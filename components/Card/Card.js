@@ -7,7 +7,7 @@ export default function Card({ dayName, icon, temp, hour }) {
 			<SmallText>{dayName}</SmallText>
 			<SmallIcon source={icon} />
 			<SmallText>{temp}°C</SmallText>
-			<SmallText>{hour}h</SmallText>
+			<SmallText>{hour}</SmallText>
 		</Day>
 	);
 }
