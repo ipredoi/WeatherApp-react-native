@@ -46,11 +46,11 @@ export const Description = styled.Text`
 `;
 
 export const NextHours = styled.ScrollView`
-	bottom: 150px;
+	bottom: 0px;
 	left: 0;
 	width: 100%;
 	height: 130px;
-	position: absolute;
+	position: relative;
 	${'' /* background: none; */}
 	border-top-color: white;
 	border-top-width: 0.2px;

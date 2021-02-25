@@ -108,8 +108,10 @@ const Weather = ({ weather, city }) => {
 						{city.name}, {city.country}
 					</City>
 					<Description>{currentWeather.description}</Description>
-
-					<Temp>{currentWeather.temp}°C</Temp>
+					<Temp>{currentWeather.temp}°</Temp>
+					<Description>
+						H:{currentWeather.max}° L:{currentWeather.min}°{' '}
+					</Description>
 				</CurrentDay>
 				<NextHours horizontal={true} showsHorizontalScrollIndicator={false}>
 					{nextDaysForecastArr.slice(0, 25).map((hourly, index) => (
@@ -122,7 +124,6 @@ const Weather = ({ weather, city }) => {
 						/>
 					))}
 				</NextHours>
-			
 			</Container>
 		)
 	);
