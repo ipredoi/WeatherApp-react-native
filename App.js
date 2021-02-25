@@ -5,11 +5,15 @@ import Weather from './components/Weather/Weather';
 import { Container } from './components/Styles/Styles';
 
 export default function App() {
-	const weather = useWeather();
-	//console.log(weather);
+	const { weather, city } = useWeather();
+	//	console.log(city);
 	return (
 		<Container>
-			{!weather ? <Loading /> : <Weather weather={weather} />}
+			{!weather || !city ? (
+				<Loading />
+			) : (
+				<Weather weather={weather} city={city} />
+			)}
 		</Container>
 	);
 }

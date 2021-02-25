@@ -10,63 +10,119 @@ import {
 	BigIcon,
 	Temp,
 	Description,
-	Week,
+	NextHours,
 } from '../../components/Styles/Styles.js';
+import convertTime from '../../library/functions/convertTime';
 
-const Weather = ({ weather }) => {
-	//console.log(weather.list);
-	const locationTimezone = weather.city.timezone * 1000;
+const Weather = ({ weather, city }) => {
+	console.log(weather);
+	//	console.log(city);
+	// local timezone
 
-	const currentWeather = weather.list.filter((object) => {
+	const locationTimezone = weather.timezone_offset * 1000;
+
+	// get the current weather for the current day
+
+	//	console.log(weather.daily[0].dt);
+
+	const todayData = weather.daily.filter((object) => {
 		const now = new Date().getTime() + locationTimezone;
-		let diff = weather.city.timezone * 1000;
-		//console.log({ diff });
-		//console.log({ now });
-
-		const currentDate = new Date(object.dt * 1000);
+		const currentDate = new Date(object.dt * 1000 + locationTimezone);
 		return isSameDay(now, currentDate);
 	});
-
+	//	console.log(todayData);
+	const currentWeather = {
+		city: city.name,
+		country: city.country,
+		description:
+			weather.current.weather[0].description.charAt(0).toUpperCase() +
+			weather.current.weather[0].description.slice(1),
+		icon:
+			imageDictionary[weather.current.weather.icon] || imageDictionary['02d'],
+		min: Math.round(todayData[0].temp.min),
+		max: Math.round(todayData[0].temp.max),
+		temp: Math.round(weather.current.temp),
+	};
 	//console.log({ currentWeather });
-	const daysByHour = weather.list.map((day) => {
-		const dt = new Date(day.dt * 1000 + locationTimezone);
+
+	//	console.log(todayData);
+	/* let weatherDescription = currentWeather.weather[0].description;
+	console.log(weatherDescription); */
+	/* let currentWeatherIcon =
+		imageDictionary[currentWeather[0].weather[0].icon] ||
+		imageDictionary['02d']; */
+
+	// let currentTemp = Math.round(currentWeather[0].main.temp);
+
+	// let cityInfo = weather.city;
+
+	// array with next hours forecast
+	const nextHoursForecast = weather.hourly.map((hour) => {
+		const dt = new Date(hour.dt * 1000 + locationTimezone);
 		return {
 			date: dt,
 			hour: dt.getHours(),
-			dayName: format(dt, 'EEEE'),
-			temp: Math.round(day.main.temp),
-			icon: imageDictionary[day.weather[0].icon] || imageDictionary['02d'],
+			//hourName: format(dt, 'EEEE'),
+			temp: `${Math.round(hour.temp)}°`,
+			icon: imageDictionary[hour.weather[0].icon] || imageDictionary['02d'],
 		};
 	});
-	console.log(daysByHour);
+
+	//console.log(nextHoursForecast);
+
+	// include Now in the title for the current weather
+	let nextDaysForecastArr = [
+		...nextHoursForecast.slice(0, 1),
+		Object.assign({}, nextHoursForecast[0], { hour: 'Now' }),
+		...nextHoursForecast.slice(1),
+	].slice(0 + 1);
+
+	console.log(nextDaysForecastArr.slice(0, 25));
+	/*
+
+	const sunRiseSunset = [
+		{
+			date: new Date(weather.city.sunrise * 1000 + locationTimezone),
+			hour: convertTime(
+				new Date(weather.city.sunrise * 1000 + locationTimezone)
+			),
+			temp: 'Sunrise',
+			icon: imageDictionary.sunrise,
+		},
+		{
+			date: new Date(weather.city.sunset * 1000 + locationTimezone),
+			hour: convertTime(
+				new Date(weather.city.sunset * 1000 + locationTimezone)
+			),
+			temp: 'Sunset',
+			icon: imageDictionary.sunset,
+		},
+	];
+ */
+	//console.log({ nextDaysForecastArr });
 	return (
-		currentWeather.length > 0 && (
+		weather && (
 			<Container>
 				<CurrentDay>
-					<City>{weather.city.name}</City>
-					<Description>
-						{currentWeather[0].weather[0].description.charAt(0).toUpperCase() +
-							currentWeather[0].weather[0].description.slice(1)}
-					</Description>
-					<BigIcon
-						source={
-							imageDictionary[currentWeather[0].weather[0].icon] ||
-							imageDictionary['02d']
-						}
-					/>
-					<Temp>{Math.round(currentWeather[0].main.temp)}°C</Temp>
+					<City>
+						{city.name}, {city.country}
+					</City>
+					<Description>{currentWeather.description}</Description>
+
+					<Temp>{currentWeather.temp}°C</Temp>
 				</CurrentDay>
-				<Week horizontal={true} showsHorizontalScrollIndicator={true}>
-					{daysByHour.slice(0, 9).map((day, index) => (
+				<NextHours horizontal={true} showsHorizontalScrollIndicator={false}>
+					{nextDaysForecastArr.slice(0, 25).map((hourly, index) => (
 						<Card
 							key={index}
-							dayName={day.dayName.substring(0, 3)}
-							temp={day.temp}
-							icon={day.icon}
-							hour={day.hour}
+							// dayName={day.dayName.substring(0, 3)}
+							hour={hourly.hour}
+							temp={hourly.temp}
+							icon={hourly.icon}
 						/>
 					))}
-				</Week>
+				</NextHours>
+			
 			</Container>
 		)
 	);

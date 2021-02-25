@@ -45,13 +45,17 @@ export const Description = styled.Text`
 	padding-top: 20px;
 `;
 
-export const Week = styled.ScrollView`
-	bottom: 0;
+export const NextHours = styled.ScrollView`
+	bottom: 150px;
 	left: 0;
 	width: 100%;
-	height: 150px;
+	height: 130px;
 	position: absolute;
-	background: black;
+	${'' /* background: none; */}
+	border-top-color: white;
+	border-top-width: 0.2px;
+	border-bottom-color: white;
+	border-bottom-width: 0.2px;
 `;
 
 export const Day = styled.View`

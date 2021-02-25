@@ -21,4 +21,6 @@ export default {
 
 	'50d': require('../../assets/icons/50d.png'),
 	'50n': require('../../assets/icons/50d.png'),
+	sunrise: require('../../assets/icons/sunrise.png'),
+	sunset: require('../../assets/icons/sunset.png'),
 };
