@@ -1,5 +1,25 @@
 import styled from 'styled-components/native';
 
+import { StyleSheet } from 'react-native';
+import { withTheme } from 'react-native-elements';
+
+export const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: 'red',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+});
+
+export const textStyles = StyleSheet.create({
+	header: {
+		fontSize: 35,
+		fontWeight: '300',
+		color: 'white',
+	},
+});
+
 export const Container = styled.SafeAreaView`
 	flex: 1;
 	background-color: #272343;
@@ -8,9 +28,10 @@ export const Container = styled.SafeAreaView`
 	align-items: center;
 `;
 export const CurrentDay = styled.View`
-	position: relative;
+	position: absolute;
+	top: 40px;
 	flex: 1;
-	margin-top: 60px;
+	margin-bottom: 5px;
 	align-items: center;
 `;
 
@@ -24,7 +45,7 @@ export const BigText = styled.Text`
 	font-size: 35px;
 	font-weight: 100;
 	color: white;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 `;
 
 export const BigIcon = styled.Image`
@@ -36,22 +57,19 @@ export const BigIcon = styled.Image`
 export const Temp = styled.Text`
 	font-size: 80px;
 	font-weight: 100;
-	color: #bae8e8;
+	color: white;
 `;
 export const Description = styled.Text`
 	font-size: 18px;
 	font-weight: 200;
 	color: white;
-	padding-top: 20px;
+	${'' /* padding-top: 5px; */}
 `;
 
 export const NextHours = styled.ScrollView`
-	bottom: 0px;
-	left: 0;
-	width: 100%;
-	height: 130px;
-	position: relative;
-	${'' /* background: none; */}
+position: absolute;
+	height: 150px
+
 	border-top-color: white;
 	border-top-width: 0.2px;
 	border-bottom-color: white;
