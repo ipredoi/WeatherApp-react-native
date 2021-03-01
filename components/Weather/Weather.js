@@ -2,18 +2,21 @@ import React from 'react';
 import { isSameDay, format } from 'date-fns';
 import imageDictionary from '../../library/images/imageDictionary';
 import Card from '../Card/Card';
-import {
-	Container,
-	CurrentDay,
-	City,
-	BigText,
-	BigIcon,
-	Temp,
-	Description,
-	NextHours,
-} from '../../components/Styles/Styles.js';
 import convertTime from '../../library/functions/convertTime';
 
+import {
+	ImageBackground,
+	StatusBar,
+	View,
+	Text,
+	ScrollView,
+} from 'react-native';
+
+import { styles } from './Weather.stylesheet';
+
+let background = require('../../assets/images/loading.jpg');
+
+console.log();
 const Weather = ({ weather, city }) => {
 	console.log(weather);
 	//	console.log(city);
@@ -102,29 +105,38 @@ const Weather = ({ weather, city }) => {
 	//console.log({ nextDaysForecastArr });
 	return (
 		weather && (
-			<Container>
-				<CurrentDay>
-					<City>
-						{city.name}, {city.country}
-					</City>
-					<Description>{currentWeather.description}</Description>
-					<Temp>{currentWeather.temp}°</Temp>
-					<Description>
-						H:{currentWeather.max}° L:{currentWeather.min}°{' '}
-					</Description>
-				</CurrentDay>
-				<NextHours horizontal={true} showsHorizontalScrollIndicator={false}>
-					{nextDaysForecastArr.slice(0, 25).map((hourly, index) => (
-						<Card
-							key={index}
-							// dayName={day.dayName.substring(0, 3)}
-							hour={hourly.hour}
-							temp={hourly.temp}
-							icon={hourly.icon}
-						/>
-					))}
-				</NextHours>
-			</Container>
+			<ImageBackground source={background} style={styles.background}>
+				<StatusBar barStyle='light-content' />
+				<View style={styles.overlay}>
+					<View style={styles.container}>
+						<View style={styles.currentDayContainer}>
+							<Text style={styles.city}>
+								{city.name}, {city.country}
+							</Text>
+							<Text style={styles.nowWeatherDescription}>
+								{currentWeather.description}
+							</Text>
+							<Text style={styles.currentTemp}>{currentWeather.temp}°</Text>
+							<Text style={styles.nowWeatherDescription}>
+								H:{currentWeather.max}° L:{currentWeather.min}°
+							</Text>
+						</View>
+						<ScrollView style={styles.nextHoursForecast}
+							horizontal={true}
+							showsHorizontalScrollIndicator={false}
+						>
+							{nextDaysForecastArr.slice(0, 25).map((hourly, index) => (
+								<Card
+									key={index}
+									hour={hourly.hour}
+									temp={hourly.temp}
+									icon={hourly.icon}
+								/>
+							))}
+						</ScrollView>
+					</View>
+				</View>
+			</ImageBackground>
 		)
 	);
 };

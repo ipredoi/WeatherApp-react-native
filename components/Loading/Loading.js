@@ -1,18 +1,21 @@
 import React from 'react';
-import imageDictionary from '../../library/images/imageDictionary';
 
 import { styles, textStyles } from './Loading.stylesheet';
-import { View, Text, ActivityIndicator, ImageBackground } from 'react-native';
+import {
+	View,
+	Text,
+	ActivityIndicator,
+	ImageBackground,
+	StatusBar,
+} from 'react-native';
 
-const background = {
-	uri:
-		'https://i.pinimg.com/originals/bb/9b/26/bb9b26c7c4f5c8f0de8ab2046277f86d.jpg',
-};
+let background = require('../../assets/images/loading.jpg');
 
 export default function Loading(props) {
 	return (
-		<View style={styles.container}>
-			<ImageBackground source={background} style={styles.background}>
+		<ImageBackground source={background} style={styles.background}>
+			<StatusBar barStyle='light-content' />
+			<View style={styles.container}>
 				<Text style={textStyles.header}>Hello</Text>
 				<ActivityIndicator
 					style={styles.loadingImg}
@@ -20,7 +23,7 @@ export default function Loading(props) {
 					color='white'
 				/>
 				<Text style={textStyles.description}>Loading...</Text>
-			</ImageBackground>
-		</View>
+			</View>
+		</ImageBackground>
 	);
 }
