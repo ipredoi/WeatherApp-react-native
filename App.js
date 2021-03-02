@@ -3,7 +3,7 @@ import useWeather from './library/customHooks/useWeatherData';
 import Loading from './components/Loading/Loading';
 import Weather from './components/Weather/Weather';
 import { styles } from './App.stylesheet';
-import { View } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, Conte } from 'react-native';
 
 export default function App() {
 	const { weather, city } = useWeather();
@@ -15,6 +15,9 @@ export default function App() {
 			) : (
 				<Weather weather={weather} city={city} />
 			)}
+			<View style={{ height: 50 }}>
+				<Text>footer</Text>
+			</View>
 		</View>
 	);
 }

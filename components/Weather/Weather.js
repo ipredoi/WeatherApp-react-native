@@ -6,9 +6,15 @@ import NextDaysForecastCard from '../NextDaysForecastCard/NextDaysForecast';
 import CurrentWeatherCard from '../CurrentWeather/CurrentWeatherCard';
 import convertTime from '../../library/functions/convertTime';
 
-import { ImageBackground, StatusBar, View } from 'react-native';
+import {
+	ImageBackground,
+	ScrollView,
+	StatusBar,
+	View,
+	StyleSheet,
+} from 'react-native';
 
-import { styles } from './Weather.stylesheet';
+//import { styles } from './Weather.stylesheet';
 
 let background = require('../../assets/images/loading.jpg');
 
@@ -70,23 +76,31 @@ const Weather = ({ weather, city }) => {
 	//console.log({ nextHoursForecastArr });
 	return (
 		weather && (
-			<ImageBackground source={background} style={styles.background}>
-				<StatusBar barStyle='light-content' />
-				<View style={styles.overlay}>
-					<View style={styles.container}>
-						<CurrentWeatherCard weather={weather} city={city} />
-						<NextHoursForecastCard
-							weather={weather}
-							style={styles.nextHoursForecast}
-						/>
-						<NextDaysForecastCard
-							weather={weather}
-							style={styles.nextDaysForecast}
-						/>
-					</View>
-				</View>
-			</ImageBackground>
+			<View style={styles.container}>
+				<CurrentWeatherCard
+					weather={weather}
+					city={city}
+					style={{ height: 300 }}
+				/>
+				<ScrollView contentContainerStyle={styles.scrollContainer}>
+					<NextHoursForecastCard weather={weather} />
+					<NextDaysForecastCard
+						weather={weather}
+						style={styles.nextDaysForecast}
+					/>
+				</ScrollView>
+			</View>
 		)
 	);
 };
 export default Weather;
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: 'blue',
+	},
+	scrollContainer: {
+		flex: 1,
+	},
+});

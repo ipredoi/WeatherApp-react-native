@@ -24,7 +24,7 @@ export default function NextDaysForecastCard({ weather }) {
 	return (
 		<View style={styles.container}>
 			{nextDaysForecastArr.map((day, index) => (
-				<View style={styles.container} key={index}>
+				<View style={styles.card} key={index}>
 					<Text style={styles.dayName}>{day.name}</Text>
 					<Image style={styles.icon} source={day.icon} />
 					<Text style={styles.precipitation}>{day.precipitation}</Text>

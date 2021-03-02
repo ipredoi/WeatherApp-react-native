@@ -9,17 +9,17 @@ export const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		top: 30,
+		//	top: 30,
 		alignContent: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'blue',
+		backgroundColor: 'pink',
 	},
 
-	nextHoursForecast: {
-		top: 200,
-	},
-	nextDaysForecast: {
-		top: 300,
-		height: 40,
-	},
+	// nextHoursForecast: {
+	// 	top: 200,
+	// },
+	// nextDaysForecast: {
+	// 	//top: 300,
+	// 	height: 40,
+	// },
 });

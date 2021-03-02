@@ -26,18 +26,20 @@ export default function NextHoursForecastCard({ weather }) {
 	].slice(0 + 1);
 
 	return (
-		<ScrollView
-			style={styles.nextHoursForecast}
-			horizontal={true}
-			showsHorizontalScrollIndicator={false}
-		>
-			{nextHoursForecastArr.slice(0, 25).map((hourly, index) => (
-				<View key={index} style={styles.container}>
-					<Text style={styles.smallText}>{hourly.hour}</Text>
-					<Image style={styles.icon} source={hourly.icon} />
-					<Text style={styles.smallText}>{hourly.temp}</Text>
-				</View>
-			))}
-		</ScrollView>
+		<View style={styles.nextHoursForecast}>
+			<ScrollView
+				style={styles.nextHoursForecast}
+				horizontal={true}
+				showsHorizontalScrollIndicator={false}
+			>
+				{nextHoursForecastArr.slice(0, 25).map((hourly, index) => (
+					<View key={index} style={styles.container}>
+						<Text style={styles.smallText}>{hourly.hour}</Text>
+						<Image style={styles.icon} source={hourly.icon} />
+						<Text style={styles.smallText}>{hourly.temp}</Text>
+					</View>
+				))}
+			</ScrollView>
+		</View>
 	);
 }
