@@ -2,9 +2,7 @@ import { StyleSheet, StatusBar } from 'react-native';
 
 console.log('statusBarHeight: ', StatusBar.currentHeight);
 export const styles = StyleSheet.create({
-	background: {
-		flex: 1,
-	},
+	background: { flex: 1 },
 	overlay: {
 		flex: 1,
 		backgroundColor: 'rgba(0,30,0,0.1)',
@@ -14,31 +12,14 @@ export const styles = StyleSheet.create({
 		top: 30,
 		alignContent: 'center',
 		justifyContent: 'center',
-	},
-	currentDayContainer: {
-		top: 70,
-		alignSelf: 'center',
-	},
-	city: {
-		textAlign: 'center',
-		fontSize: 30,
-		fontWeight: '300',
-		color: 'white',
+		backgroundColor: 'blue',
 	},
 
-	nowWeatherDescription: {
-		textAlign: 'center',
-		fontSize: 18,
-
-		color: 'white',
-	},
-	currentTemp: {
-		textAlign: 'center',
-		fontSize: 80,
-		fontWeight: '100',
-		color: 'white',
-	},
 	nextHoursForecast: {
 		top: 200,
+	},
+	nextDaysForecast: {
+		top: 300,
+		height: 40,
 	},
 });

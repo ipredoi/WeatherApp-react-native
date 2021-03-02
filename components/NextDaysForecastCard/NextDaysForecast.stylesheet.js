@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		top: 100,
+
 		height: 100,
 		borderBottomColor: 'white',
 		borderBottomWidth: 0.2,
@@ -18,8 +18,9 @@ export const styles = StyleSheet.create({
 		width: 50,
 		height: 50,
 	},
-	smallText: {
+	precipitation: {
 		fontSize: 15,
 		color: 'white',
 	},
+	card: { flexDirection: 'row' },
 });

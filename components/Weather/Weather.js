@@ -2,6 +2,7 @@ import React from 'react';
 import { isSameDay, format } from 'date-fns';
 import imageDictionary from '../../library/images/imageDictionary';
 import NextHoursForecastCard from '../NextHoursForecastCard/NextHoursForecastCard';
+import NextDaysForecastCard from '../NextDaysForecastCard/NextDaysForecast';
 import CurrentWeatherCard from '../CurrentWeather/CurrentWeatherCard';
 import convertTime from '../../library/functions/convertTime';
 
@@ -77,6 +78,10 @@ const Weather = ({ weather, city }) => {
 						<NextHoursForecastCard
 							weather={weather}
 							style={styles.nextHoursForecast}
+						/>
+						<NextDaysForecastCard
+							weather={weather}
+							style={styles.nextDaysForecast}
 						/>
 					</View>
 				</View>
