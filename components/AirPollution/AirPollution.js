@@ -1,15 +1,15 @@
-import { setMilliseconds } from 'date-fns';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 export default function AirPollution({ airPollution }) {
-	console.log(airPollution);
 	const [aqiText, setAquiText] = useState(null);
-	//console.log(aqiText);
-	let aqi = airPollution.main.aqi;
 
+	let aqi = airPollution.main.aqi;
+	let windowWidth = Dimensions.get('window').width;
+	let barPadding = 15;
+	console.log(windowWidth);
 	let aqiLegend = [
-		{ text: 'Low', color: '#00ff00' },
+		{ text: 'Low', color: '#00ff00', position: windowWidth / 10 },
 		{ text: 'Low', color: '#39e600' },
 		{ text: 'Low', color: '#2db300' },
 		{ text: 'Moderate', color: '#ffd11a' },
@@ -20,7 +20,6 @@ export default function AirPollution({ airPollution }) {
 		{ text: 'High', color: '#4d1a00' },
 		{ text: 'Very high', color: '#990099' },
 	];
-	console.log(styles.bar.width / 2);
 
 	useEffect(() => {
 		function aquiTextUpdate(value) {
@@ -30,8 +29,17 @@ export default function AirPollution({ airPollution }) {
 		aquiTextUpdate(aqi);
 	}, [aqi]);
 
+	//circle dims
+
+	let circleWidth = 40;
+	let circleBorderRadius = circleWidth / 2;
+
+	let circlePosition = (windowWidth - barPadding * 2) / 10;
+
 	return (
-		<View style={styles.container}>
+		<View
+			style={[styles.container, { width: windowWidth, padding: barPadding }]}
+		>
 			<Text>AIR POLLUTION</Text>
 			<Text>{aqiText}</Text>
 			<View>
@@ -45,7 +53,6 @@ export default function AirPollution({ airPollution }) {
 						}}
 					/>
 					{aqiLegend.slice(1, -1).map((el, index) => {
-						console.log(el.color);
 						return (
 							<View
 								key={index}
@@ -74,8 +81,6 @@ export default function AirPollution({ airPollution }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-
-		padding: 15,
 		borderBottomColor: 'white',
 		borderBottomWidth: 0.2,
 	},
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		top: 10,
 		height: 20,
-		width: '100%',
+
 		backgroundColor: 'white',
 		borderColor: '#000',
 		borderWidth: 0.2,
@@ -96,5 +101,12 @@ const styles = StyleSheet.create({
 		borderRadius: 20 / 2,
 		backgroundColor: 'blue',
 		bottom: 10,
+
+		left: (345 / 10 - 20) / 2 + 34.5 * 3,
+		borderColor: 'white',
+		borderWidth: 3,
+		shadowOpacity: 0,
 	},
 });
+
+// (window.width - (padding*2) / 10 casute) - diam.cerc)/2+ (window.width- (padding*2)/10)* air index
