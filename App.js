@@ -6,14 +6,14 @@ import Weather from './components/Weather/Weather';
 import { View, StyleSheet, ScrollView, Text } from 'react-native';
 
 export default function App() {
-	const { weather, city } = useWeather();
+	const { weather, city, airPollution } = useWeather();
 	//	console.log(city);
 	return (
 		<View style={styles.container}>
 			{!weather || !city ? (
 				<Loading />
 			) : (
-				<Weather weather={weather} city={city} />
+				<Weather weather={weather} city={city} airPollution={airPollution} />
 			)}
 		</View>
 	);

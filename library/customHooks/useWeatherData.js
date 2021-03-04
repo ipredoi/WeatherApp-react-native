@@ -6,11 +6,13 @@ function useWeatherData(lat, long) {
 	const [weather, setWeather] = useState(null);
 	const [city, setCity] = useState(null);
 	const coordinates = useGeoLocation();
+	const [airPollution, setAirPollution] = useState(null);
 
 	useEffect(() => {
 		if (coordinates) {
 			fetchWeatherData(...coordinates);
 			fetchCityData(...coordinates);
+			fetchAirPollutionData(...coordinates);
 		}
 	}, [coordinates]);
 
@@ -44,7 +46,22 @@ function useWeatherData(lat, long) {
 		}
 	}
 
-	return { weather, city };
+	async function fetchAirPollutionData(lat, long) {
+		try {
+			const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${long}&appid=363c1f1f0b4fcb3f61d80932d780aa3e`;
+
+			//	onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+
+			const response = await fetch(url);
+			const airData = await response.json();
+			console.log('Air polutiin working');
+			setAirPollution(airData.list[0]);
+		} catch (err) {
+			console.log('Unable to fetch air pollution');
+		}
+	}
+
+	return { weather, city, airPollution };
 }
 
 export default useWeatherData;

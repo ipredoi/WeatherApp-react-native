@@ -15,7 +15,7 @@ export default function DayDescription({ weather }) {
 		<View style={styles.container}>
 			<Text
 				style={styles.description}
-			>{`Today: ${todayWeatherDescription.description} currently. The high will be ${todayWeatherDescription.max}°. The low will be ${todayWeatherDescription.min}°`}</Text>
+			>{`Today: ${todayWeatherDescription.description} currently. The high will be ${todayWeatherDescription.max}°. The low will be ${todayWeatherDescription.min}°.`}</Text>
 		</View>
 	);
 }

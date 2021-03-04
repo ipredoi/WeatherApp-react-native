@@ -1,7 +1,7 @@
 import React from 'react';
 import imageDictionary from '../../library/images/imageDictionary';
 import { Image, View, Text, ScrollView, StyleSheet } from 'react-native';
-
+import { roundRainPercentage } from '../../library/functions/functions';
 export default function NextHoursForecastCard({ weather }) {
 	const locationTimezone = weather.timezone_offset * 1000;
 
@@ -11,8 +11,8 @@ export default function NextHoursForecastCard({ weather }) {
 			date: dt,
 			hour: dt.getHours(),
 			rain:
-				Math.round(Math.round(hour['pop'] * 100) / 10) !== 0
-					? `${Math.round(Math.round(hour['pop'] * 100) / 10) * 10}%`
+				roundRainPercentage(hour['pop']) !== 0
+					? `${roundRainPercentage(hour['pop'])}%`
 					: '',
 			icon: imageDictionary[hour.weather[0].icon] || imageDictionary['02d'],
 			temp: `${Math.round(hour.temp)}°`,

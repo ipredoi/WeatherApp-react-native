@@ -1,5 +1,8 @@
 import React from 'react';
-import { getWeekDay } from '../../library/functions/convertTime';
+import {
+	getWeekDay,
+	roundRainPercentage,
+} from '../../library/functions/functions';
 import imageDictionary from '../../library/images/imageDictionary';
 
 import { StyleSheet } from 'react-native';
@@ -11,7 +14,10 @@ export default function NextDaysForecastCard({ weather }) {
 		return {
 			name: getWeekDay(day.dt),
 			icon: imageDictionary[day.weather[0].icon] || imageDictionary['02d'],
-			precipitation: day['pop'] !== 0 ? `${Math.round(day['pop'] * 100)}%` : '',
+			precipitation:
+				roundRainPercentage(day['pop']) !== 0
+					? `${roundRainPercentage(day['pop'])}%`
+					: '',
 			maxTemp: `${Math.round(day.temp.max)}°`,
 			minTemp: `${Math.round(day.temp.min)}°`,
 		};

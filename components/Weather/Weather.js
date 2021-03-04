@@ -4,9 +4,9 @@ import imageDictionary from '../../library/images/imageDictionary';
 import NextHoursForecastCard from '../NextHoursForecastCard/NextHoursForecastCard';
 import NextDaysForecastCard from '../NextDaysForecastCard/NextDaysForecast';
 import CurrentWeatherCard from '../CurrentWeather/CurrentWeatherCard';
-import convertTime from '../../library/functions/convertTime';
+import convertTime from '../../library/functions/functions';
 import DayDescription from '../DayDescription/DayDescription';
-
+import AirPollution from '../AirPollution/AirPollution';
 import {
 	Text,
 	ImageBackground,
@@ -20,7 +20,7 @@ import {
 
 let background = require('../../assets/images/loading.jpg');
 
-const Weather = ({ weather, city }) => {
+const Weather = ({ weather, city, airPollution }) => {
 	console.log(weather.daily[0]);
 	return (
 		weather && (
@@ -37,6 +37,7 @@ const Weather = ({ weather, city }) => {
 						style={styles.nextDaysForecast}
 					/>
 					<DayDescription weather={weather} />
+					<AirPollution airPollution={airPollution} />
 				</ScrollView>
 			</View>
 		)

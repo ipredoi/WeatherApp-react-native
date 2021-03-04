@@ -18,3 +18,11 @@ export function getWeekDay(number) {
 
 	return dayOfWeek;
 }
+
+export function roundRainPercentage(number) {
+	let percentage = Math.round(number * 100);
+	let roundToTen = Math.round(percentage / 10) * 10;
+	return roundToTen;
+}
+
+
