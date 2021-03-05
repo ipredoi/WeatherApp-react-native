@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-
+import { uviLegend } from '../../library/legends/legends';
 export default function UvIndex({ weather }) {
-	const [uviText, setUviText] = useState(null);
+	const [uviText, setUviText] = useState({});
 
 	console.log(uviText);
 	console.log(weather.current);
@@ -18,88 +18,23 @@ export default function UvIndex({ weather }) {
 	let circlePositionLeft =
 		(barWidth / 11 - circleDia) / 2 + (uvi - 1) * (barWidth / 11);
 
-	//console.log(windowWidth);
-	let uviLegend = [
-		{
-			text: 'Low',
-			color: '#33cc00',
-			description:
-				'Wear sunglasses on bright days. If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen. Bright surfaces, sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'Low',
-			color: '#33cc00',
-			description:
-				'Wear sunglasses on bright days. If you burn easily, cover up and use broad spectrum SPF 30+ sunscreen. Bright surfaces, sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'Moderate',
-			color: '#ffd11a',
-			description:
-				'Stay in shade near midday when the Sun is strongest. If outdoors, wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'Moderate',
-			color: '#ffd11a',
-			description:
-				'Stay in shade near midday when the Sun is strongest. If outdoors, wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'Moderate',
-			color: '#ffd11a',
-			description:
-				'Stay in shade near midday when the Sun is strongest. If outdoors, wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'Moderate',
-			color: '#ff9933',
-			description:
-				'Reduce time in the sun between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'High',
-			color: '#ff9933',
-			description:
-				'Reduce time in the sun between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'High',
-			color: '#ff1a66',
-			description:
-				'Minimize sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'High',
-			color: '#ff1a66',
-			description:
-				'Minimize sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'High',
-			color: '#ff1a66',
-			description:
-				'Minimize sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-		{
-			text: 'Extreme',
-			color: '#9966ff',
-			description:
-				'Try to avoid sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 30+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, and snow, will increase UV exposure.',
-		},
-	];
-
 	useEffect(() => {
 		function uviTextUpdate(value) {
-			let text = {
-				uviLevel: `${value} - ${uviLegend[uvi - 1].text}`,
-				uivDescription: `${value}- ${uviLegend[uvi - 1].description}`,
-			};
-			setUviText(text);
+			if (value !== 0) {
+				let text = {
+					uviLevel: `${value} - ${uviLegend[uvi - 1].text}`,
+					uivDescription: `${uviLegend[uvi - 1].description}`,
+				};
+				setUviText(text);
+			} else {
+				let text = {
+					uviLevel: `0`,
+				};
+				setUviText(text);
+			}
 		}
 		uviTextUpdate(uvi);
 	}, [uvi]);
-
-	//circle dims
 
 	return (
 		<View
@@ -112,7 +47,7 @@ export default function UvIndex({ weather }) {
 					paddingBottom: 5,
 				}}
 			>
-				AIR POLLUTION
+				UV INDEX
 			</Text>
 			<Text
 				style={{
@@ -122,7 +57,7 @@ export default function UvIndex({ weather }) {
 					paddingBottom: 2,
 				}}
 			>
-				text
+				{uviText.uviLevel}
 			</Text>
 			<View>
 				<View
@@ -166,21 +101,24 @@ export default function UvIndex({ weather }) {
 							width: circleDia,
 							height: circleDia,
 							borderRadius: circleBorderRadius,
-							left: circlePositionLeft,
+							left: uvi === 0 ? 2 : circlePositionLeft,
 							bottom: (barHeight - circleBorderRadius / 2) / 2,
 						},
 					]}
 				></View>
 			</View>
-			<Text
-				style={{
-					fontSize: 10,
-					color: 'white',
-					paddingBottom: 5,
-				}}
-			>
-				AIR POLLUTION
-			</Text>
+			{uvi !== 0 && (
+				<Text
+					style={{
+						fontSize: 12,
+						top: 5,
+						color: 'white',
+						paddingBottom: 5,
+					}}
+				>
+					{uviText.uivDescription}
+				</Text>
+			)}
 		</View>
 	);
 }

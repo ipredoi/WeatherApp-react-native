@@ -28,7 +28,9 @@ let background = require('../../assets/images/loading.jpg');
 const Weather = ({ weather, city, airPollution }) => {
 	//console.log(weather.daily[0]);
 	return (
-		weather && (
+		weather &&
+		airPollution &&
+		city && (
 			<View style={styles.container}>
 				<ScrollView contentContainerStyle={styles.scrollContainer}>
 					<CurrentWeatherCard

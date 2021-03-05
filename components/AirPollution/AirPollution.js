@@ -1,33 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-
+import { aqiLegend } from '../../library/legends/legends';
 export default function AirPollution({ airPollution }) {
-	const [aqiText, setAquiText] = useState(null);
+	const [aqiText, setAquiText] = useState('text');
 
 	let aqi = airPollution.main.aqi;
 	let windowWidth = Dimensions.get('window').width;
 	let barPadding = 15;
 	let barWidth = windowWidth - 2 * barPadding;
-	let barHeight = 24;
+	let barHeight = 20;
 	let circleDia = 16;
 	let circleBorderRadius = circleDia / 2;
-	//console.log(airPollution.components);
+
 	let circlePositionLeft =
 		(barWidth / 10 - circleDia) / 2 + (aqi - 1) * (barWidth / 10);
-
-	//console.log(windowWidth);
-	let aqiLegend = [
-		{ text: 'Low', color: '#00ff00', position: windowWidth / 10 },
-		{ text: 'Low', color: '#39e600' },
-		{ text: 'Low', color: '#2db300' },
-		{ text: 'Moderate', color: '#ffd11a' },
-		{ text: 'Moderate', color: '#ff9933' },
-		{ text: 'Moderate', color: '#ff751a' },
-		{ text: 'High', color: '#ff3333' },
-		{ text: 'High', color: '#800000' },
-		{ text: 'High', color: '#4d1a00' },
-		{ text: 'Very high', color: '#990099' },
-	];
 
 	useEffect(() => {
 		function aquiTextUpdate(value) {
