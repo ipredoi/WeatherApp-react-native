@@ -12,16 +12,16 @@ let background = require('../../assets/images/loading.jpg');
 
 export default function Loading() {
 	return (
-		<ImageBackground source={background} style={styles.background}>
+		<ImageBackground source={background} style={{ flex: 1 }}>
 			<StatusBar barStyle='light-content' />
 			<View style={styles.container}>
-				<Text style={textStyles.header}>Hello</Text>
+				<Text style={styles.header}>Hello</Text>
 				<ActivityIndicator
 					style={styles.loadingImg}
 					size='large'
 					color='white'
 				/>
-				<Text style={textStyles.description}>Loading...</Text>
+				<Text style={styles.description}>Loading...</Text>
 			</View>
 		</ImageBackground>
 	);
@@ -38,19 +38,12 @@ const styles = StyleSheet.create({
 		top: 250,
 		marginBottom: 20,
 	},
-	background: {
-		flex: 1,
-	},
-});
-
-const textStyles = StyleSheet.create({
 	header: {
 		bottom: 50,
 		fontSize: 35,
 		fontWeight: '300',
 		color: 'white',
 	},
-
 	description: {
 		top: 250,
 		fontSize: 18,

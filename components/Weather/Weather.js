@@ -23,7 +23,7 @@ import {
 
 //import { styles } from './Weather.stylesheet';
 
-let background = require('../../assets/images/loading.jpg');
+let background = require('../../assets/images/sunnySky.jpg');
 
 const Weather = ({ weather, city, airPollution }) => {
 	//console.log(weather.daily[0]);
@@ -31,27 +31,32 @@ const Weather = ({ weather, city, airPollution }) => {
 		weather &&
 		airPollution &&
 		city && (
-			<View style={styles.container}>
-				<ScrollView contentContainerStyle={styles.scrollContainer}>
-					<CurrentWeatherCard
-						weather={weather}
-						city={city}
-						style={{ height: 300 }}
-					/>
-					<NextHoursForecastCard weather={weather} />
-					<NextDaysForecastCard
-						weather={weather}
-						style={styles.nextDaysForecast}
-					/>
-					<DayDescription weather={weather} />
-					<AirPollution airPollution={airPollution} />
-					<Sun weather={weather} />
-					<Humidity weather={weather} />
-					<Wind weather={weather} />
-					<Precipitation weather={weather} />
-					<UvIndex weather={weather} />
-				</ScrollView>
-			</View>
+			<ImageBackground source={background} style={{ flex: 1 }}>
+				<StatusBar barStyle='light-content' />
+				<View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+					<View style={styles.container}>
+						<ScrollView contentContainerStyle={styles.scrollContainer}>
+							<CurrentWeatherCard
+								weather={weather}
+								city={city}
+								style={{ height: 300 }}
+							/>
+							<NextHoursForecastCard weather={weather} />
+							<NextDaysForecastCard
+								weather={weather}
+								style={styles.nextDaysForecast}
+							/>
+							<DayDescription weather={weather} />
+							<AirPollution airPollution={airPollution} />
+							<Sun weather={weather} />
+							<Humidity weather={weather} />
+							<Wind weather={weather} />
+							<Precipitation weather={weather} />
+							<UvIndex weather={weather} />
+						</ScrollView>
+					</View>
+				</View>
+			</ImageBackground>
 		)
 	);
 };
