@@ -7,6 +7,11 @@ import CurrentWeatherCard from '../CurrentWeather/CurrentWeatherCard';
 import convertTime from '../../library/functions/functions';
 import DayDescription from '../DayDescription/DayDescription';
 import AirPollution from '../AirPollution/AirPollution';
+import Sun from '../Sun/Sun';
+import Humidity from '../Humidity/Humidity';
+import Wind from '../Wind/wind';
+import Precipitation from '../Pressure/Pressure';
+import UvIndex from '../UvIndex/UvIndex';
 import {
 	Text,
 	ImageBackground,
@@ -21,7 +26,7 @@ import {
 let background = require('../../assets/images/loading.jpg');
 
 const Weather = ({ weather, city, airPollution }) => {
-	console.log(weather.daily[0]);
+	//console.log(weather.daily[0]);
 	return (
 		weather && (
 			<View style={styles.container}>
@@ -38,6 +43,11 @@ const Weather = ({ weather, city, airPollution }) => {
 					/>
 					<DayDescription weather={weather} />
 					<AirPollution airPollution={airPollution} />
+					<Sun weather={weather} />
+					<Humidity weather={weather} />
+					<Wind weather={weather} />
+					<Precipitation weather={weather} />
+					<UvIndex weather={weather} />
 				</ScrollView>
 			</View>
 		)

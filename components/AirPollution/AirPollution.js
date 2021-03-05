@@ -7,7 +7,15 @@ export default function AirPollution({ airPollution }) {
 	let aqi = airPollution.main.aqi;
 	let windowWidth = Dimensions.get('window').width;
 	let barPadding = 15;
-	console.log(windowWidth);
+	let barWidth = windowWidth - 2 * barPadding;
+	let barHeight = 24;
+	let circleDia = 16;
+	let circleBorderRadius = circleDia / 2;
+	//console.log(airPollution.components);
+	let circlePositionLeft =
+		(barWidth / 10 - circleDia) / 2 + (aqi - 1) * (barWidth / 10);
+
+	//console.log(windowWidth);
 	let aqiLegend = [
 		{ text: 'Low', color: '#00ff00', position: windowWidth / 10 },
 		{ text: 'Low', color: '#39e600' },
@@ -31,25 +39,42 @@ export default function AirPollution({ airPollution }) {
 
 	//circle dims
 
-	let circleWidth = 40;
-	let circleBorderRadius = circleWidth / 2;
-
-	let circlePosition = (windowWidth - barPadding * 2) / 10;
-
 	return (
 		<View
 			style={[styles.container, { width: windowWidth, padding: barPadding }]}
 		>
-			<Text>AIR POLLUTION</Text>
-			<Text>{aqiText}</Text>
+			<Text
+				style={{
+					fontSize: 10,
+					color: 'white',
+					paddingBottom: 5,
+				}}
+			>
+				AIR POLLUTION
+			</Text>
+			<Text
+				style={{
+					fontSize: 25,
+					color: 'white',
+					fontWeight: '500',
+					paddingBottom: 2,
+				}}
+			>
+				{aqiText}
+			</Text>
 			<View>
-				<View style={styles.bar}>
+				<View
+					style={[
+						styles.bar,
+						{ height: barHeight, borderRadius: barHeight / 2 },
+					]}
+				>
 					<View
 						style={{
 							flex: 1,
 							backgroundColor: aqiLegend[0].color,
-							borderTopLeftRadius: 10,
-							borderBottomLeftRadius: 10,
+							borderTopLeftRadius: barHeight / 2,
+							borderBottomLeftRadius: barHeight / 2,
 						}}
 					/>
 					{aqiLegend.slice(1, -1).map((el, index) => {
@@ -67,12 +92,23 @@ export default function AirPollution({ airPollution }) {
 						style={{
 							flex: 1,
 							backgroundColor: aqiLegend[aqiLegend.length - 1].color,
-							borderTopRightRadius: 10,
-							borderBottomRightRadius: 10,
+							borderTopRightRadius: barHeight / 2,
+							borderBottomRightRadius: barHeight / 2,
 						}}
 					/>
 				</View>
-				<View style={styles.circle}></View>
+				<View
+					style={[
+						styles.circle,
+						{
+							width: circleDia,
+							height: circleDia,
+							borderRadius: circleBorderRadius,
+							left: circlePositionLeft,
+							bottom: (barHeight - circleBorderRadius / 2) / 2,
+						},
+					]}
+				></View>
 			</View>
 		</View>
 	);
@@ -88,25 +124,13 @@ const styles = StyleSheet.create({
 	bar: {
 		flexDirection: 'row',
 		top: 10,
-		height: 20,
 
-		backgroundColor: 'white',
-		borderColor: '#000',
-		borderWidth: 0.2,
-		borderRadius: 10,
+		borderColor: 'white',
+		borderWidth: 1,
 	},
 	circle: {
-		width: 20,
-		height: 20,
-		borderRadius: 20 / 2,
-		backgroundColor: 'blue',
-		bottom: 10,
-
-		left: (345 / 10 - 20) / 2 + 34.5 * 3,
+		backgroundColor: 'black',
 		borderColor: 'white',
-		borderWidth: 3,
-		shadowOpacity: 0,
+		borderWidth: 2,
 	},
 });
-
-// (window.width - (padding*2) / 10 casute) - diam.cerc)/2+ (window.width- (padding*2)/10)* air index

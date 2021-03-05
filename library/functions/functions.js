@@ -1,7 +1,9 @@
 // function that transforms epoch to hh:mm
 
 export function convertTime(number) {
-	return number.getHours() + ':' + number.getMinutes();
+	let hours = ('0' + number.getHours()).substr(-2);
+	let minutes = ('0' + number.getMinutes()).substr(-2);
+	return hours + ':' + minutes;
 }
 
 export function getWeekDay(number) {
@@ -25,4 +27,28 @@ export function roundRainPercentage(number) {
 	return roundToTen;
 }
 
-
+export function degToCard(value) {
+	value = parseFloat(value);
+	if (value <= 11.25) return 'N';
+	value -= 11.25;
+	var allDirections = [
+		'NNE',
+		'NE',
+		'ENE',
+		'E',
+		'ESE',
+		'SE',
+		'SSE',
+		'S',
+		'SSW',
+		'SW',
+		'WSW',
+		'W',
+		'WNW',
+		'NW',
+		'NNW',
+		'N',
+	];
+	var dIndex = parseInt(value / 22.5);
+	return allDirections[dIndex] ? allDirections[dIndex] : 'N';
+}

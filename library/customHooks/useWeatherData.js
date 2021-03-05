@@ -33,14 +33,17 @@ function useWeatherData(lat, long) {
 
 	async function fetchCityData(lat, long) {
 		try {
-			const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=363c1f1f0b4fcb3f61d80932d780aa3e`;
+			const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&&units=metric&appid=363c1f1f0b4fcb3f61d80932d780aa3e`;
 
 			//	onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
 			const response = await fetch(url);
-			const cityData = await response.json();
+			const data = await response.json();
 			//	console.log('is working');
-			setCity({ name: cityData.name, country: cityData.sys.country });
+			setCity({
+				name: data.name,
+				country: data.sys.country,
+			});
 		} catch (err) {
 			console.log('Unable to fetch city');
 		}
