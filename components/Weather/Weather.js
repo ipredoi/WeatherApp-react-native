@@ -1,10 +1,9 @@
 import React from 'react';
 import { isSameDay, format } from 'date-fns';
-import imageDictionary from '../../library/images/imageDictionary';
+import backgroudDictionary from '../../library/images/backgroundDictionary';
 import NextHoursForecastCard from '../NextHoursForecastCard/NextHoursForecastCard';
 import NextDaysForecastCard from '../NextDaysForecastCard/NextDaysForecast';
 import CurrentWeatherCard from '../CurrentWeather/CurrentWeatherCard';
-import convertTime from '../../library/functions/functions';
 import DayDescription from '../DayDescription/DayDescription';
 import AirPollution from '../AirPollution/AirPollution';
 import Sun from '../Sun/Sun';
@@ -13,19 +12,19 @@ import Wind from '../Wind/wind';
 import Precipitation from '../Pressure/Pressure';
 import UvIndex from '../UvIndex/UvIndex';
 import {
-	Text,
 	ImageBackground,
 	ScrollView,
 	StatusBar,
 	View,
 	StyleSheet,
 } from 'react-native';
+import backgroundDictionary from '../../library/images/backgroundDictionary';
 
 //import { styles } from './Weather.stylesheet';
 
-let background = require('../../assets/images/sunnySky.jpg');
-
 const Weather = ({ weather, city, airPollution }) => {
+	console.log(weather.current.weather.icon);
+	let background = backgroudDictionary[weather.current.weather.icon];
 	//console.log(weather.daily[0]);
 	return (
 		weather &&

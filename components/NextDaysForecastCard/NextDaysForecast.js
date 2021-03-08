@@ -3,7 +3,7 @@ import {
 	getWeekDay,
 	roundRainPercentage,
 } from '../../library/functions/functions';
-import imageDictionary from '../../library/images/imageDictionary';
+import iconsDictionary from '../../library/images/iconsDictionary';
 
 import { StyleSheet } from 'react-native';
 
@@ -13,7 +13,7 @@ export default function NextDaysForecastCard({ weather }) {
 	const nextDaysForecast = weather.daily.map((day) => {
 		return {
 			name: getWeekDay(day.dt),
-			icon: imageDictionary[day.weather[0].icon] || imageDictionary['02d'],
+			icon: iconsDictionary[day.weather[0].icon] || iconsDictionary['02d'],
 			precipitation:
 				roundRainPercentage(day['pop']) !== 0
 					? `${roundRainPercentage(day['pop'])}%`

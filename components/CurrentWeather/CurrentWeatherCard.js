@@ -1,7 +1,7 @@
 import React from 'react';
 import { isSameDay, format } from 'date-fns';
 import { View, Text, StyleSheet } from 'react-native';
-import imageDictionary from '../../library/images/imageDictionary';
+import iconsDictionary from '../../library/images/iconsDictionary';
 
 function CurrentWeatherCard({ city, weather }) {
 	// local timezone
@@ -22,7 +22,7 @@ function CurrentWeatherCard({ city, weather }) {
 			weather.current.weather[0].description.charAt(0).toUpperCase() +
 			weather.current.weather[0].description.slice(1),
 		icon:
-			imageDictionary[weather.current.weather.icon] || imageDictionary['02d'],
+			iconsDictionary[weather.current.weather.icon] || iconsDictionary['02d'],
 		min: Math.round(todayData[0].temp.min),
 		max: Math.round(todayData[0].temp.max),
 		temp: Math.round(weather.current.temp),

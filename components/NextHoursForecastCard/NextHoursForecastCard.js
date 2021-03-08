@@ -1,5 +1,5 @@
 import React from 'react';
-import imageDictionary from '../../library/images/imageDictionary';
+import iconsDictionary from '../../library/images/iconsDictionary';
 import { Image, View, Text, ScrollView, StyleSheet } from 'react-native';
 import { roundRainPercentage } from '../../library/functions/functions';
 export default function NextHoursForecastCard({ weather }) {
@@ -14,7 +14,7 @@ export default function NextHoursForecastCard({ weather }) {
 				roundRainPercentage(hour['pop']) !== 0
 					? `${roundRainPercentage(hour['pop'])}%`
 					: '',
-			icon: imageDictionary[hour.weather[0].icon] || imageDictionary['02d'],
+			icon: iconsDictionary[hour.weather[0].icon] || iconsDictionary['02d'],
 			temp: `${Math.round(hour.temp)}°`,
 		};
 	});
