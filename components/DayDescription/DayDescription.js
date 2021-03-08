@@ -9,8 +9,6 @@ export default function DayDescription({ weather }) {
 		min: Math.round(weather.daily[0].temp.min),
 	};
 
-	//console.log(todayWeatherDescription);
-
 	return (
 		<View style={styles.container}>
 			<Text

@@ -4,10 +4,8 @@ import {
 	roundRainPercentage,
 } from '../../library/functions/functions';
 import iconsDictionary from '../../library/images/iconsDictionary';
-
 import { StyleSheet } from 'react-native';
-
-import { Image, View, Text, ScrollView } from 'react-native';
+import { Image, View, Text } from 'react-native';
 
 export default function NextDaysForecastCard({ weather }) {
 	const nextDaysForecast = weather.daily.map((day) => {
@@ -24,7 +22,6 @@ export default function NextDaysForecastCard({ weather }) {
 	});
 
 	const nextDaysForecastArr = nextDaysForecast.slice(1);
-	//	console.log({ obiectulmeu: { nextDaysForecastArr } });
 
 	return (
 		<View style={styles.container}>
@@ -53,7 +50,6 @@ const styles = StyleSheet.create({
 		borderTopWidth: 0.2,
 		justifyContent: 'center',
 		padding: 10,
-		//	backgroundColor: 'red',
 	},
 
 	icon: {

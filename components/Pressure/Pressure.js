@@ -1,8 +1,6 @@
-import { el } from 'date-fns/locale';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { View, Text } from 'react-native';
-import { degToCard } from '../../library/functions/functions';
 
 export default function DayDescription({ weather }) {
 	let pressure = weather.current.pressure;
@@ -31,22 +29,18 @@ const styles = StyleSheet.create({
 		borderBottomColor: 'white',
 		borderBottomWidth: 0.2,
 	},
-
 	smallText: {
 		fontSize: 10,
 		color: 'white',
 		paddingBottom: 5,
 	},
-
 	bigText: {
 		fontSize: 25,
 		color: 'white',
 		paddingBottom: 5,
 	},
-
 	descriptionBox: {
 		flex: 1,
-
 		justifyContent: 'flex-start',
 	},
 });

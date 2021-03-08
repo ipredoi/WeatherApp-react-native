@@ -19,12 +19,8 @@ function useWeatherData(lat, long) {
 	async function fetchWeatherData(lat, long) {
 		try {
 			const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=metric&exclude=minutely&appid=363c1f1f0b4fcb3f61d80932d780aa3e`;
-
-			//	onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-
 			const response = await fetch(url);
 			const data = await response.json();
-			console.log('is working');
 			setWeather(data);
 		} catch (err) {
 			console.log('Unable to fetch weahter');
@@ -34,12 +30,8 @@ function useWeatherData(lat, long) {
 	async function fetchCityData(lat, long) {
 		try {
 			const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&&units=metric&appid=363c1f1f0b4fcb3f61d80932d780aa3e`;
-
-			//	onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-
 			const response = await fetch(url);
 			const data = await response.json();
-			//	console.log('is working');
 			setCity({
 				name: data.name,
 				country: data.sys.country,
@@ -52,12 +44,8 @@ function useWeatherData(lat, long) {
 	async function fetchAirPollutionData(lat, long) {
 		try {
 			const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${long}&appid=363c1f1f0b4fcb3f61d80932d780aa3e`;
-
-			//	onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-
 			const response = await fetch(url);
 			const airData = await response.json();
-			console.log('Air polutiin working');
 			setAirPollution(airData.list[0]);
 		} catch (err) {
 			console.log('Unable to fetch air pollution');
@@ -68,20 +56,3 @@ function useWeatherData(lat, long) {
 }
 
 export default useWeatherData;
-
-// filter data function
-
-/* function filterData(object) {
-	return {
-		city_id: object.city.id,
-		city: object.city.name,
-		country: object.city.country,
-		timezone: object.city.timezone,
-		coord: {
-			lat: object.city.coord.lat,
-			lon: object.city.coord.lon,
-		},
-		list: object.list,
-	};
-}
- */

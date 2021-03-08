@@ -4,10 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import iconsDictionary from '../../library/images/iconsDictionary';
 
 function CurrentWeatherCard({ city, weather }) {
-	// local timezone
 	const locationTimezone = weather.timezone_offset * 1000;
-
-	// get the current weather for the current day
 
 	const todayData = weather.daily.filter((object) => {
 		const now = new Date().getTime() + locationTimezone;
@@ -22,7 +19,8 @@ function CurrentWeatherCard({ city, weather }) {
 			weather.current.weather[0].description.charAt(0).toUpperCase() +
 			weather.current.weather[0].description.slice(1),
 		icon:
-			iconsDictionary[weather.current.weather.icon] || iconsDictionary['02d'],
+			iconsDictionary[weather.current.weather[0].icon] ||
+			iconsDictionary['02d'],
 		min: Math.round(todayData[0].temp.min),
 		max: Math.round(todayData[0].temp.max),
 		temp: Math.round(weather.current.temp),

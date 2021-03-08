@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { uviLegend } from '../../library/legends/legends';
+
 export default function UvIndex({ weather }) {
 	const [uviText, setUviText] = useState({});
 
-	console.log(uviText);
-	console.log(weather.current);
 	let uvi = Math.round(weather.current.uvi);
-	console.log(uvi);
 	let windowWidth = Dimensions.get('window').width;
 	let barPadding = 15;
 	let barWidth = windowWidth - 2 * barPadding;
 	let barHeight = 20;
 	let circleDia = 16;
 	let circleBorderRadius = circleDia / 2;
-
 	let circlePositionLeft =
 		(barWidth / 11 - circleDia) / 2 + (uvi - 1) * (barWidth / 11);
 

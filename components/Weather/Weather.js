@@ -1,5 +1,4 @@
 import React from 'react';
-import { isSameDay, format } from 'date-fns';
 import backgroudDictionary from '../../library/images/backgroundDictionary';
 import NextHoursForecastCard from '../NextHoursForecastCard/NextHoursForecastCard';
 import NextDaysForecastCard from '../NextDaysForecastCard/NextDaysForecast';
@@ -18,21 +17,23 @@ import {
 	View,
 	StyleSheet,
 } from 'react-native';
-import backgroundDictionary from '../../library/images/backgroundDictionary';
 
-//import { styles } from './Weather.stylesheet';
 
-const Weather = ({ weather, city, airPollution }) => {
-	console.log(weather.current.weather.icon);
-	let background = backgroudDictionary[weather.current.weather.icon];
-	//console.log(weather.daily[0]);
+export default function Weather({ weather, city, airPollution }) {
+	let background = backgroudDictionary[weather.current.weather[0].icon];
+
 	return (
 		weather &&
 		airPollution &&
 		city && (
 			<ImageBackground source={background} style={{ flex: 1 }}>
 				<StatusBar barStyle='light-content' />
-				<View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+				<View
+					style={{
+						flex: 1,
+						backgroundColor: 'rgba(0, 0, 0, 0.3)',
+					}}
+				>
 					<View style={styles.container}>
 						<ScrollView contentContainerStyle={styles.scrollContainer}>
 							<CurrentWeatherCard
@@ -58,8 +59,7 @@ const Weather = ({ weather, city, airPollution }) => {
 			</ImageBackground>
 		)
 	);
-};
-export default Weather;
+}
 
 const styles = StyleSheet.create({
 	background: { flex: 1 },
@@ -69,17 +69,7 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		//	top: 30,
 		alignContent: 'center',
 		justifyContent: 'center',
-		//backgroundColor: 'pink',
 	},
-
-	// nextHoursForecast: {
-	// 	top: 200,
-	// },
-	// nextDaysForecast: {
-	// 	//top: 300,
-	// 	height: 40,
-	// },
 });

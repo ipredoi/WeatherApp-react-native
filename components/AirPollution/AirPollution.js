@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { aqiLegend } from '../../library/legends/legends';
+
 export default function AirPollution({ airPollution }) {
 	const [aqiText, setAquiText] = useState('text');
 
@@ -22,8 +23,6 @@ export default function AirPollution({ airPollution }) {
 		}
 		aquiTextUpdate(aqi);
 	}, [aqi]);
-
-	//circle dims
 
 	return (
 		<View

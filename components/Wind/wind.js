@@ -1,4 +1,3 @@
-import { el } from 'date-fns/locale';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { View, Text } from 'react-native';
@@ -49,7 +48,6 @@ const styles = StyleSheet.create({
 
 	descriptionBox: {
 		flex: 1,
-
 		justifyContent: 'flex-start',
 	},
 });

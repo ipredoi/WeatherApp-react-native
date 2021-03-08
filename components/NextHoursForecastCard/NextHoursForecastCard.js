@@ -2,6 +2,7 @@ import React from 'react';
 import iconsDictionary from '../../library/images/iconsDictionary';
 import { Image, View, Text, ScrollView, StyleSheet } from 'react-native';
 import { roundRainPercentage } from '../../library/functions/functions';
+
 export default function NextHoursForecastCard({ weather }) {
 	const locationTimezone = weather.timezone_offset * 1000;
 
@@ -18,8 +19,7 @@ export default function NextHoursForecastCard({ weather }) {
 			temp: `${Math.round(hour.temp)}°`,
 		};
 	});
-	//console.log(nextHoursForecast);
-	// include Now in the title for the current weather
+
 	let nextHoursForecastArr = [
 		...nextHoursForecast.slice(0, 1),
 		Object.assign({}, nextHoursForecast[0], { hour: 'Now' }),
@@ -56,7 +56,6 @@ export const styles = StyleSheet.create({
 		borderBottomWidth: 0.2,
 		borderTopColor: 'white',
 		borderTopWidth: 0.2,
-		//	backgroundColor: 'red',
 	},
 
 	icon: {

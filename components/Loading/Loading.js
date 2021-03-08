@@ -3,16 +3,13 @@ import {
 	View,
 	Text,
 	ActivityIndicator,
-	ImageBackground,
 	StatusBar,
 	StyleSheet,
 } from 'react-native';
 
-let background = require('../../assets/images/loading.jpg');
-
 export default function Loading() {
 	return (
-		<ImageBackground source={background} style={{ flex: 1 }}>
+		<View style={{ flex: 1, backgroundColor: '#52bffa' }}>
 			<StatusBar barStyle='light-content' />
 			<View style={styles.container}>
 				<Text style={styles.header}>Hello</Text>
@@ -23,7 +20,7 @@ export default function Loading() {
 				/>
 				<Text style={styles.description}>Loading...</Text>
 			</View>
-		</ImageBackground>
+		</View>
 	);
 }
 
@@ -32,7 +29,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'rgba(0,0,0,0.6)',
 	},
 	loadingImg: {
 		top: 250,

@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 
-function useGeolocation(lat, lon) {
+export default function useGeolocation(lat, lon) {
 	const [coordinates, setCoordinates] = useState(null);
-	console.log(coordinates);
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition(
 			(position) => {
@@ -16,5 +15,3 @@ function useGeolocation(lat, lon) {
 
 	return coordinates;
 }
-
-export default useGeolocation;
