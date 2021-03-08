@@ -1,8 +1,13 @@
 ## Weather App
 
-<table>
+<table style="border-collapse: collapse;border-style:hidden;">
   <tr>
-    <td align="center"><img src="" width="300px;" alt=" image"/></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/70764046/110363786-e4cc8800-803a-11eb-97d1-eb3c3caa53ed.png" width="300px;" alt=" loadingPage"/></td>
+      <td align="center"><img src="https://user-images.githubusercontent.com/70764046/110365487-02025600-803d-11eb-9c2b-fa1dbc126b54.png" width="300px;" alt=" first page"/></td>
+          <td align="center"><img src="https://user-images.githubusercontent.com/70764046/110365895-7d640780-803d-11eb-840c-9daffbc5a13e.png" width="300px;" alt=" second page"/></td>
+
+
+
   </tr>
 </table>
 
