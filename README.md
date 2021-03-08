@@ -1,6 +1,14 @@
 ## Weather App
 
-![image](https://user-images.githubusercontent.com/70764046/110363786-e4cc8800-803a-11eb-97d1-eb3c3caa53ed.png)
+<table>
+  <tr>
+    <td align="center"><img src="" width="300px;" alt=" image"/></td>
+  </tr>
+</table>
+
+
+
+
 
 
 
