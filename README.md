@@ -11,8 +11,8 @@
   </tr>
 </table>
 
-
-
+## Open App on iOS/Android device using Expo Go
+![image](https://user-images.githubusercontent.com/70764046/110367012-092a6380-803f-11eb-9a94-cc610c8d5079.png)
 
 
 
