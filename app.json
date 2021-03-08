@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "weatherApp",
-    "slug": "weatherApp",
+    "name": "Weather",
+    "slug": "weather",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,8 +18,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "infoPlist":{
-        "NSLocationWhenInUseUsageDescription":"Allow Wheather App to use your location"
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Allow Wheather App to use your location"
       }
     },
     "android": {
@@ -30,7 +30,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "React Native weather app ",
+    "githubUrl": "https://github.com/ipredoi/WeatherApp-react-native.git"
   }
-  
 }
